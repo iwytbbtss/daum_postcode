@@ -3,7 +3,6 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name='theme-color' content='#161616' />
   <title>다음 주소 검색</title>
 </head>
 <style>
@@ -13,7 +12,6 @@
     padding: 0;
     height: 100%;
     width: 100%;
-    background-color: #161616;
   }
 
   #full-size {
@@ -33,17 +31,30 @@
 <script type="text/javascript">
   const element_layer = document.getElementById('full-size');
 
-  var theme = {
-      bgColor: "#161616", //바탕 배경색
-      searchBgColor: "#161616", //검색창 배경색
-      contentBgColor: "#161616", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
-      pageBgColor: "#161616", //페이지 배경색
-      textColor: "#FFFFFF", //기본 글자색
-      queryTextColor: "#FFFFFF", //검색창 글자색
-      postcodeTextColor: "#FF5252", //우편번호 글자색
-      emphTextColor: "#FFE350", //강조 글자색
-      outlineColor: "#9A9A9A" //테두리
-    };
+  const url = new URL(window.location.href);
+  const { searchParams } = url;
+  // 테마 색상 쿼리에서 받아오기
+  const bgColor = searchParams.get('bgColor');
+  const searchBgColor = searchParams.get('searchBgColor');
+  const contentBgColor = searchParams.get('contentBgColor');
+  const pageBgColor = searchParams.get('pageBgColor');
+  const textColor = searchParams.get('textColor');
+  const queryTextColor = searchParams.get('queryTextColor');
+  const postcodeTextColor = searchParams.get('postcodeTextColor');
+  const emphTextColor = searchParams.get('emphTextColor');
+  const outlineColor = searchParams.get('outlineColor');
+
+  const theme = {
+    bgColor: `#${bgColor}`, //바탕 배경색
+    searchBgColor: `#${searchBgColor}`, //검색창 배경색
+    contentBgColor: `#${contentBgColor}`, //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+    pageBgColor: `#${pageBgColor}`, //페이지 배경색
+    textColor: `#${textColor}`, //기본 글자색
+    queryTextColor: `#${queryTextColor}`, //검색창 글자색
+    postcodeTextColor: `#${postcodeTextColor}`, //우편번호 글자색
+    emphTextColor: `#${emphTextColor}`, //강조 글자색
+    outlineColor: `#${outlineColor}`, //테두리
+  };
 
   daum.postcode.load(function () {
     new daum.Postcode({
